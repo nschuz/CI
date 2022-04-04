@@ -5,7 +5,7 @@ sudo: required
 #instala docker
 services:
   -docker
-
+#before
 before_install:
   -docker build -t nschuz/CI -f Dockerfile.dev .
 
