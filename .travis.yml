@@ -7,7 +7,7 @@ services:
   -docker
 #before
 before_install:
-  -docker build -t nschuz/CI -f Dockerfile.dev .
+  - docker build -t nschuz/CI -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true nschuz/CI npm run test
