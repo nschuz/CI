@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    #hace referencia qiue el docker file esta en la msiam ruta 
+    build: 
+      #Decimos  que nuestro docker file esta en la misma carpeta
+      context: .
+      #El nombre de docker file
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    #Volumes
+    volumes:
+    #La pripera ruta dice no tarte de mapear node_modules
+      - /app/node_modules
+    #Mapea mi dicrecciro actual to  inside  container /app
+      - .:/app
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run" , "test"]
