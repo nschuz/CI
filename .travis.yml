@@ -11,3 +11,17 @@ before_install:
 
 script:
   - docker run -e CI=true nschuz/ci npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  #toma los archivos de de gittbus y  sube los archivos al bucket
+  bucket_name: "elasticbeanstalk-us-west-2-177760986445"
+  #la primera vez utilizamos app name
+  bucket_path: "docker-react"
+  on:
+    branch: "master"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
