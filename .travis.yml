@@ -1,0 +1,13 @@
+lenguage: generic
+#le damos super usuario
+sudo: required
+
+#instala docker
+services:
+  -docker
+
+before_install:
+  -docker build -t nschuz/CI -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true nschuz/CI npm run test
